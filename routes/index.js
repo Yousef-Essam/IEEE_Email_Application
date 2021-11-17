@@ -21,7 +21,7 @@ router.post('/send', function(req, res, next) {
   message.html = `<h1 style="text-align:center; border-bottom: 1px solid grey; color: red;">IEEE CUSB Signing Up Successful</h1>
   <h2>Thanks, ${req.body.name} for signing up to our services</h2>
   <div>We are contacting ${req.body.university} to get assured of your work.</div>
-  <p style="text-align: center">Stay tuned for our response</p>`
+  <p style="text-align: center">Stay tuned for our response. <3</p>`
   sgMail
   .send(message)
   .then(function (response) {

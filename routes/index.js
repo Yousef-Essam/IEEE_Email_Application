@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var sgMail = require('@sendgrid/mail');
 
+var sequelize = require('sequelize');
+
 const API_key = 'Insert_API_key_here';
 
 sgMail.setApiKey(API_key);

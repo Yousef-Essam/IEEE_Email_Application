@@ -9,6 +9,12 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const db = require('./models/index');
+db.sequelize
+  .authenticate()
+  .then(()=> console.log('DB connection Seccessful'))
+  .catch(err => console.log('Error: ' + err));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

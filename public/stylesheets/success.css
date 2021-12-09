@@ -35,3 +35,28 @@ td {
     background-color: #0366a1;
     padding: 1%;
 }
+
+button {
+    background-color: #38488a;
+    border: none;
+    color: white;
+    letter-spacing: 0.06vw;
+    margin: 0;
+    padding: 5px 0;
+    height: 3.5vw;
+    width: 30%;
+    font-size: 1vw;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+}

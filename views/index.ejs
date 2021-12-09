@@ -2,53 +2,73 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title><%= title %></title>
+    <title>Registration Form</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="shortcut icon" href="/images/favicon.ico">
   </head>
   <body>
-    <div class="formContainer">
-      <form method="POST" action="/send">
-        <div class="area">
-        <label for="name">Name</label>
-        <div class="field fieldbox" id="field1">
-          <input name="name" type="text" required placeholder="Enter Your Name">
+    <div class="container">
+      <img class="image" src="/images/IEEE_CUSB.png">
+      <div style="clear: right;"></div>
+      <form method="POST" action="/send" class="submitForm">
+        <div id="title">
+          Participant Registration
         </div>
-      </div>
-        <div class="area">
-        <label for="email">Email</label>
-        <div class="field fieldbox" id="field2">
-          
-          <input name="email" type="email" required placeholder="Enter Your Email">
-        </div>
-      </div>
-        <div class="area">
-        <label for="University">University</label>
-        <div class="field fieldbox" id="field3">
-          
-          <input name="university" type="text" required placeholder="Enter Your University/Institute">
-        </div>
-      </div>
-        <div class="area">
-        <div class="field" id="field4">
-          <label for="gender">Gender</label>
-          <div class="fieldbox">
-          <input type="radio" name="gender" value="Male" required>
-          <label class="radio">Male</label>
-          <input type="radio" name="gender" value="Female" required>
-          <label class="radio">Female</label>
+
+        <div class="inputs">
+          <div id="input1" class="field">
+            <label for="name">NAME*</label>
+            <input name="name" type="text" required placeholder="Enter Your Name">
+          </div>
+
+          <div id="input2" class="field">
+            <label for="University">UNIVERSITY*</label>
+            <input name="university" type="text" required placeholder="Enter Your University/Institute">
+          </div>
+
+          <div id="input3" class="field">
+            <label for="email">EMAIL*</label>
+            <input name="email" type="email" required placeholder="Enter Your Email">
+          </div>
+
+          <div id="input4" class="field">
+            <div>
+              <label for="gender">GENDER</label>
+              <div>
+              <input type="radio" name="gender" value="Male" required>
+              <label class="radio">MALE</label><br/>
+              <input type="radio" name="gender" value="Female" required>
+              <label class="radio">FEMALE</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="input5" class="field">
+            <label for="workshop1">WORKSHOP 1*</label>
+            <input type="text" name="workshop1" required>
+          </div>
+
+          <div id="input6" class="field">
+            <label for="workshop2">WORKSHOP 2*</label>
+            <input type="text" name="workshop2" required>
+          </div>
+
+          <div id="input7" class="field">
+            <label for="workshop3">WORKSHOP 3*</label>
+            <input type="text" name="workshop3" required>
+          </div>
+
+          <div id="input8" class="field">
+            <label for="otherW">OTHER WORKSHOPS (optional)</label>
+            <input type="text" name="otherW" placeholder="Separate every entry with a dash">
           </div>
         </div>
-      </div>
-        <div class="area">
-        <div class="field" id="field5">
-          <label for="worklist">List Of Workshops</label>
-          <textarea name="worklist" required></textarea>
-        </div>
-      </div>
-        <div id="field6" class="fieldbox">
-          <input type="submit" class="submit">
+
+        <div class="fieldbox">
+          <input type="submit" class="submit" value="SIGN UP">
         </div>
       </form>
     </div>
+    <script src="/javascripts/script.js"></script>
   </body>
 </html>

@@ -17,7 +17,7 @@ var message = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 
 router.post('/send', function(req, res, next) {
@@ -50,10 +50,14 @@ router.post('/send', function(req, res, next) {
   Participants.create(myData)
   .then(() => {
     console.log('Added Successfully');
-    return Participants.findAll();
-  }).then((records) => {
-    console.log(records);
-    res.render('success', {records: records});
+    res.render('success');
+  });
+});
+
+router.get('/users/table', function(req, res, next) {
+  Participants.findAll()
+  .then((records) => {
+    res.render('table', {records: records});
   });
 });
 

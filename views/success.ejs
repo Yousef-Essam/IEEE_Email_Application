@@ -12,36 +12,6 @@
             <img class="image2" src="/images/IEEE_CUSB2.png">
             <div id="title" style="padding-bottom: 3.5%; text-align: center;">Registration Done Successfully</div>
             <p style="text-align: center; padding: 0 0 2% 0; font-size: 20px">Thanks for Registering in IEEE CUSB. Please check your email to get notifications of our responses.</p>
-            <div class="caption"">List of Applicants :</div>
-            <div class="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <td></td>
-                            <td>Name</td>
-                            <td>Email</td>
-                            <td>University</td>
-                            <td>Workshops</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%for (let i = 0; i < records.length; i++) {%>
-                            <tr>
-                                <td><%=i + 1%></td>
-                                <td><%=records[i].dataValues.Name%></td>
-                                <td><%=records[i].dataValues.Email%></td>
-                                <td><%=records[i].dataValues.University%></td>
-                                <td>
-                                    <%for (let j = 0; j < JSON.parse(records[i].dataValues.Workshops).length; j++) {%>
-                                        <span style="display: block"><%=JSON.parse(records[i].dataValues.Workshops)[j]%></span>
-                                    <%}%>
-                                </td>
-                            </tr>
-                        <%}%>
-                    </tbody>
-                </table>
-            </div>
-            
         </div>
         <script src="/javascripts/script.js"></script>
     </body>

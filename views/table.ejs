@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Registered Successfully</title>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+        <link rel='stylesheet' href='/stylesheets/success.css' />
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    </head>
+    <body>
+        <div class="container" id="container2">
+            <img class="image2" src="/images/IEEE_CUSB2.png">
+            <div class="caption">List of Applicants :</div>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>Name</td>
+                            <td>Email</td>
+                            <td>University</td>
+                            <td>Workshops</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for (let i = 0; i < records.length; i++) {%>
+                            <tr>
+                                <td><%=i + 1%></td>
+                                <td><%=records[i].dataValues.Name%></td>
+                                <td><%=records[i].dataValues.Email%></td>
+                                <td><%=records[i].dataValues.University%></td>
+                                <td>
+                                    <%for (let j = 0; j < JSON.parse(records[i].dataValues.Workshops).length; j++) {%>
+                                        <span style="display: block"><%=JSON.parse(records[i].dataValues.Workshops)[j]%></span>
+                                    <%}%>
+                                </td>
+                            </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <script src="/javascripts/script.js"></script>
+    </body>
+</html>

@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var sgMail = require('@sendgrid/mail');
+var session = require('express-session');
+var crypto = require('crypto');
 
 var sequelize = require('sequelize');
 const Participants = require('../models').Participants;
-const participants = require('../models/participants');
+const Sessions = require('../models').Sessions;
 
 const API_key = 'Insert_API_Key_here';
 
@@ -17,7 +19,63 @@ var message = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  if (req.cookies.sesID) checkSession(req.cookies.sesID).then((record) => {
+    if (record[0]) {
+      let existentSession = record[0].dataValues;
+      console.log(req.cookies.sesID ? req.cookies.sesID : "Sad" + '\n');
+      console.log(existentSession ? existentSession : "Sad");
+      if (existentSession)
+        Participants.findAll({
+          where: {
+            Name: existentSession.Name,
+            Password: existentSession.Password
+          }
+        }).then((record) => {
+            res.render('temp', {record: record[0]});
+        });
+      else
+        res.render('index');
+    }
+  });
+  else
+        res.render('index');
+});
+
+router.get('/signin', function(req, res, next) {
+  console.log(req.cookies.sesID ? req.cookies.sesID : "Sad");
+
+  if (req.cookies.sesID)
+    checkSession(req.cookies.sesID).then((record) => {
+      if (record[0])
+        res.redirect('/');
+
+      else
+        res.render('signin', {message: ""});
+    })
+
+  else
+    res.render('signin', {message: ""});
+});
+
+router.post('/signin', function(req, res, next) {
+  console.log(req.cookies.sesID ? req.cookies.sesID : "Sad");
+  Participants.findAll({
+    where: {
+      Name: req.body.name,
+      Password: req.body.password
+    }
+  }).then((record) => {
+    if (record[0]) {
+      let sesID = addSession(record[0]);
+
+      res.cookie('sesID', sesID);
+      res.redirect('/');
+    } else 
+      res.render('signin', {message: "Invalid Name or Password. Try Again."});
+  }).catch((error) => {
+    res.render('signin', {message: "Invalid Name or Password. Try Again."});
+  });
+  
 });
 
 router.post('/send', function(req, res, next) {
@@ -35,12 +93,13 @@ router.post('/send', function(req, res, next) {
     console.log(error.message);
   });
 
-  let workshops = [req.body.workshop1, req.body.workshop2, req.body.workshop3, ...req.body.otherW.split('-')];
+  let workshops = req.body.workshops.split('-');
 
   let myData = {
     Name: req.body.name,
-    University: req.body.university,
     Email: req.body.email,
+    Password: req.body.password,
+    University: req.body.university,
     Gender: req.body.gender,
     Workshops: JSON.stringify(workshops)
   };
@@ -61,4 +120,55 @@ router.get('/users/table', function(req, res, next) {
   });
 });
 
+router.get('/logout', function(req, res, next) {
+  if (req.cookies.sesID) checkSession(req.cookies.sesID).then((record) => {
+    if (record[0])
+      destroySession(req.cookies.sesID).then(() => {
+        res.clearCookie('sesID');
+        res.redirect('/');
+      });
+  })
+  
+});
+
 module.exports = router;
+
+function generateSessionID() {
+  return crypto.randomBytes(16).toString('base64');
+}
+
+function addSession(record) {
+  'use strict';
+
+  let sesID = generateSessionID()
+
+  Sessions.create({
+    sessionID: sesID,
+    Name: record.Name,
+    Password: record.Password
+  }).then(() => {
+    console.log('Session Added Successfully!!');
+  });
+
+  return sesID;
+}
+
+function checkSession(sesID) {
+  'use strict';
+
+  return Sessions.findAll({
+    where: {
+      sessionID: sesID
+    }
+  });
+}
+
+function destroySession(sesID) {
+  'use strict';
+
+  return Sessions.destroy({
+    where: {
+      sessionID: sesID
+    }
+  });
+}

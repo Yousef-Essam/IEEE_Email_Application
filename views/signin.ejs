@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Registration Form</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  </head>
+  <body>
+    <div class="container">
+      <img class="image" src="/images/IEEE_CUSB.png">
+      <div style="clear: right;"></div>
+      <form method="POST" action="/signin" class="submitForm">
+        <div id="signInTitle">
+          Sign In
+        </div>
+
+        <div class="signInInputs">
+          <div id="input1" class="field">
+            <label for="name">NAME</label>
+            <input name="name" type="text" required placeholder="Enter Your Name">
+          </div>
+
+          <div id="input2" class="field">
+            <label for="password">PASSWORD*</label>
+            <input name="password" type="password" required placeholder="Enter Your Password">
+          </div>
+
+          <%= message %>
+
+        <div class="fieldbox">
+          <input type="submit" class="submit" value="SIGN IN">
+        </div>
+      </form>
+    </div>
+    <script src="/javascripts/script.js"></script>
+  </body>
+</html>

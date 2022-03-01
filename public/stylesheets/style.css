@@ -41,9 +41,15 @@ body {
   flex: 6;
   padding: 2%;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-#title {
+.signUp {
+  justify-content: space-between;
+}
+
+#title, #signInTitle {
   padding: 3.5%;
   padding-bottom: 0;
   font-size: 3vw;
@@ -63,7 +69,7 @@ body {
   margin: 7%;
 }
 
-input[type="text"], input[type="email"], input[type="radio"] {
+input[type="text"], input[type="email"], input[type="radio"], input[type="password"] {
   padding: 0.7vw;
   width: 100%;
   margin-top: 0.8vw;
@@ -115,4 +121,20 @@ input.submit {
   top: 97%;
   box-shadow: 0px 1px 5px 2px grey;
   border-radius: 2px;
+}
+
+.signmein {
+  display: block;
+  width: 100%;
+  padding-left: 3.5%;
+  font: 14px "Segoe UI";
+  font-size: 1vw;
+}
+
+.myInfo {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2vw;
 }

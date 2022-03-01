@@ -10,7 +10,7 @@
     <div class="container">
       <img class="image" src="/images/IEEE_CUSB.png">
       <div style="clear: right;"></div>
-      <form method="POST" action="/send" class="submitForm">
+      <form method="POST" action="/send" class="submitForm signUp">
         <div id="title">
           Participant Registration
         </div>
@@ -22,16 +22,21 @@
           </div>
 
           <div id="input2" class="field">
-            <label for="University">UNIVERSITY*</label>
-            <input name="university" type="text" required placeholder="Enter Your University/Institute">
-          </div>
-
-          <div id="input3" class="field">
             <label for="email">EMAIL*</label>
             <input name="email" type="email" required placeholder="Enter Your Email">
           </div>
 
+          <div id="input3" class="field">
+            <label for="password">PASSWORD*</label>
+            <input name="password" type="password" required placeholder="Enter Your Password">
+          </div>
+
           <div id="input4" class="field">
+            <label for="University">UNIVERSITY*</label>
+            <input name="university" type="text" required placeholder="Enter Your University/Institute">
+          </div>
+
+          <div id="input5" class="field">
             <div>
               <label for="gender">GENDER</label>
               <div>
@@ -43,26 +48,13 @@
             </div>
           </div>
 
-          <div id="input5" class="field">
-            <label for="workshop1">WORKSHOP 1*</label>
-            <input type="text" name="workshop1" required>
-          </div>
-
           <div id="input6" class="field">
-            <label for="workshop2">WORKSHOP 2*</label>
-            <input type="text" name="workshop2" required>
-          </div>
-
-          <div id="input7" class="field">
-            <label for="workshop3">WORKSHOP 3*</label>
-            <input type="text" name="workshop3" required>
-          </div>
-
-          <div id="input8" class="field">
-            <label for="otherW">OTHER WORKSHOPS (optional)</label>
-            <input type="text" name="otherW" placeholder="Separate every entry with a dash">
+            <label for="otherW">LIST OF WORKSHOPS*</label>
+            <input type="text" name="workshops" placeholder="Separate every entry with a dash" required>
           </div>
         </div>
+
+        <a href="/signin" class="signmein">I already have an account.</a>
 
         <div class="fieldbox">
           <input type="submit" class="submit" value="SIGN UP">
